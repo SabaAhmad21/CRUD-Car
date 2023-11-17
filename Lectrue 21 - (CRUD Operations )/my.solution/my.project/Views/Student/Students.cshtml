@@ -1,0 +1,39 @@
+﻿@using my.project.ViewModels;
+@model IEnumerable<Student>
+
+
+<a asp-action="StudentCreate" asp-controller="Student"  class="btn btn-primary btn-sm mt-5">Add Student</a>
+
+
+<table class="table table-hover mt-5">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Department</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null && Model.Count() > 0)
+        {
+            int index = 1;
+            foreach(var item in Model)
+            {
+                <tr>
+                    <th scope="row">@index</th>
+                    <td>@item.StudentName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Department</td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" asp-area="" asp-controller="Student" asp-action="StudentDelete" asp-route-id="@item.Id">Delete</a>
+
+                        <a class="btn btn-warning btn-xs" asp-area="" asp-controller="Student" asp-action="StudentUpdate" asp-route-id="@item.Id">edit</a>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+    </tbody>
+</table>
